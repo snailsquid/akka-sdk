@@ -1,0 +1,58 @@
+{
+  "name": "@akka-bot/sdk",
+  "version": "0.1.2",
+  "description": "Akka WhatsApp Command Platform SDK — build commands for the Akka marketplace",
+  "keywords": [
+    "akka",
+    "whatsapp",
+    "bot",
+    "command",
+    "sdk",
+    "marketplace"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snailsquid/akka-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/snailsquid/akka-sdk/issues"
+  },
+  "homepage": "https://github.com/snailsquid/akka-sdk#readme",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc && esbuild src/index.ts --bundle --format=esm --outfile=dist/index.js && esbuild src/index.ts --bundle --format=cjs --outfile=dist/index.cjs && cp dist/index.d.ts dist/index.d.cts",
+    "prepublishOnly": "npm run build",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "@types/bun": "latest",
+    "typescript": "^5.8.0"
+  },
+  "engines": {
+    "node": ">=18",
+    "bun": ">=1.0"
+  }
+}
